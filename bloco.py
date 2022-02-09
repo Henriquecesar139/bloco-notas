@@ -2,8 +2,10 @@ from tkinter import *
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 def salvar():
+    global diretorio
     try:
-        diretorio = asksaveasfilename()
+        if diretorio == '':
+            diretorio = asksaveasfilename()
         arq = open(diretorio, 'w')
         arq.write(texto.get("1.0", END))
     except:
@@ -34,6 +36,8 @@ def tema(estilo):
         texto['bg'] = 'white'
         texto['fg'] = 'black'
 
+diretorio = ''
+
 tela = Tk()
 tela['bg'] = 'gray'
 tela.title('Bloco De Notas')
@@ -54,7 +58,7 @@ menu.add_cascade(label="tema", menu = estilo)
 
 tela.config(menu = menu)
 
-texto = Text (tela, width = 200, height = 80, bg = 'white', fg = 'black')
+texto = Text (tela, width = 180, height = 80, bg = 'white', fg = 'black')
 texto.pack(side = TOP)
 
 
