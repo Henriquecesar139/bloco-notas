@@ -12,6 +12,7 @@ def salvar():
         pass
 
 def abrir():
+    global diretorio
     try:
         diretorio = askopenfilename()
         conteudo = []
