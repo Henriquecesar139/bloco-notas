@@ -35,6 +35,9 @@ def tema(estilo):
     if estilo == 2:
         texto['bg'] = 'white'
         texto['fg'] = 'black'
+    if estilo== 3:
+        texto['bg'] = 'orange'
+        texto['fg'] = 'black'
 
 diretorio = ''
 
@@ -54,6 +57,7 @@ menu.add_cascade(label="Arquivo", menu=arquivo)
 estilo = Menu(menu)
 estilo.add_command(label = 'escuro', command = lambda : tema(1))
 estilo.add_command(label = 'claro', command = lambda : tema(2))
+estilo.add_command(label = 'laranja', command = lambda : tema(3))
 menu.add_cascade(label="tema", menu = estilo)
 
 tela.config(menu = menu)
