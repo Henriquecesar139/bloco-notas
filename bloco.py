@@ -40,7 +40,17 @@ def tema(estilo):
         texto['bg'] = 'orange'
         texto['fg'] = 'black'
 
+
+def tamanho_fonte(n):
+    global tamanho
+    if n == 1:
+        tamanho += 2
+    elif n == 2:
+        tamanho -= 2
+    texto['font'] = ('courier', tamanho)
+
 diretorio = ''
+tamanho = 10
 
 tela = Tk()
 tela['bg'] = 'gray'
@@ -61,10 +71,14 @@ estilo.add_command(label = 'claro', command = lambda : tema(2))
 estilo.add_command(label = 'laranja', command = lambda : tema(3))
 menu.add_cascade(label="tema", menu = estilo)
 
+fonte = Menu(menu)
+fonte.add_command(label = 'Texto Maior', command = lambda : tamanho_fonte(1))
+fonte.add_command(label = 'Texto Menor', command = lambda : tamanho_fonte(2))
+menu.add_cascade(label = 'texto', menu = fonte)
 tela.config(menu = menu)
 
 texto = Text (tela, width = 180, height = 80, bg = 'white', fg = 'black')
 texto.pack(side = TOP)
-
+texto.configure(font=('courier', tamanho))
 
 tela.mainloop()
