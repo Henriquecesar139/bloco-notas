@@ -16,7 +16,6 @@ def abrir():
     try:
         diretorio = askopenfilename()
         conteudo = []
-        print(diretorio)
         arq = open(diretorio, 'r')
         for linha in arq:
             conteudo.append(linha)
@@ -47,15 +46,31 @@ def tamanho_fonte(n):
         tamanho += 2
     elif n == 2:
         tamanho -= 2
-    texto['font'] = ('courier', tamanho)
+    texto['font'] = (fonte_estilo, tamanho)
+
+def tipo_fonte(n):
+    global fonte_estilo
+    if n == 1:
+        texto['font'] = ('arial')
+        fonte_estilo = 'arial'
+    if n == 2:
+        texto['font'] = ('courier')
+        fonte_estilo = 'courier'
+    if n == 3:
+        texto['font'] = ('terminal')
+        fonte_estilo = 'terminal'
+    if n == 4:
+        texto['font'] = ('roman')
+        fonte_estilo = 'roman'
 
 diretorio = ''
-tamanho = 10
+tamanho = 12
+fonte_estilo = 'arial'
 
 tela = Tk()
 tela['bg'] = 'gray'
 tela.title('Bloco De Notas')
-tela.geometry('900x700')
+tela.geometry('800x600')
 
 menu = Menu(tela)
 
@@ -75,10 +90,19 @@ fonte = Menu(menu)
 fonte.add_command(label = 'Texto Maior', command = lambda : tamanho_fonte(1))
 fonte.add_command(label = 'Texto Menor', command = lambda : tamanho_fonte(2))
 menu.add_cascade(label = 'texto', menu = fonte)
+
+
+fonte2 = Menu(menu)
+fonte2.add_command(label = 'Arial', command = lambda : tipo_fonte(1))
+fonte2.add_command(label = 'Courier', command = lambda : tipo_fonte(2))
+fonte2.add_command(label = 'Terminal', command = lambda : tipo_fonte(3))
+fonte2.add_command(label = 'Roman', command = lambda : tipo_fonte(4))
+menu.add_cascade(label = 'Fonte', menu = fonte2)
+
 tela.config(menu = menu)
 
 texto = Text (tela, width = 180, height = 80, bg = 'white', fg = 'black')
 texto.pack(side = TOP)
-texto.configure(font=('courier', tamanho))
+texto.configure(font=(fonte_estilo, tamanho))
 
 tela.mainloop()
