@@ -42,11 +42,14 @@ def tema(estilo):
 
 def tamanho_fonte(n):
     global tamanho
-    if n == 1:
-        tamanho += 2
-    elif n == 2:
-        tamanho -= 2
-    texto['font'] = (fonte_estilo, tamanho)
+    if tamanho == 8:
+        pass
+    else:
+        if n == 1:
+            tamanho += 2
+        elif n == 2:
+            tamanho -= 2
+        texto['font'] = (fonte_estilo, tamanho)
 
 def tipo_fonte(n):
     global fonte_estilo
